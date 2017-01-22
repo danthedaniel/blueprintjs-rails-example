@@ -58,9 +58,9 @@ Rails.application.config.assets.paths << "#{Rails.root}/node_modules/@blueprintj
 ### What you'll need to do
 
 There is no authentication included with this example. One solution I've found
-is to send the session cookie to the client during login, which the React app
-then stores in a cookie. That token is then sent with every authenticated AJAX
-request.
+is to send the session data as JSON to the client during login , which the React
+app then stores in a cookie. That token is then sent with every authenticated
+AJAX request.
 
 Also make sure to request all AJAX paths as `*.json`, or with header
 specifying the desired content type as JSON. This make certain that rails routes
@@ -68,5 +68,8 @@ the requests correctly given the custom constraints.
 
 All of your connections to/from the server will be taking place through AJAX
 requests once you're past the initial app download. I think this is a nice
-division of responsibilities, treating the front-end as a completely separate
-entity from the actual Rails site.
+division of responsibilities. It treats the front-end as a completely separate
+entity from the actual Rails site. I recommend using fetch for AJAX requests.
+
+During deployment you'll also need to take care to run `npm install`. If you're
+using capistrano, there is an npm plugin that can do this.
